@@ -1,0 +1,28 @@
+<div class = "container">
+  <% if @task.errors.present? %>
+    <ul>    
+    <% @task.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  <% end %>
+</div>  
+
+<%= form_for @task do |f| %>
+  <div class = "container">
+    <%= f.label :title %>
+  </div>
+  <div class = "container">
+  <%= f.text_field :title %>
+  </div>  
+  <div class = "container">
+    <%= f.label :due_date %>
+  </div>  
+  <div class = "container">
+    <%= f.date_select :due_date %>
+  </div>
+  <br>  
+  <div class = "container">
+    <%= f.submit "Add Task" %>
+  </div>    
+<% end %>

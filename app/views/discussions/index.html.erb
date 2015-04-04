@@ -1,0 +1,33 @@
+<div class="container">
+
+  <h2>Discussion Page</h2>
+
+  <table class = "table">
+    <tr>
+      <th>Title</th>
+      <th></th>
+      <th></th>
+    </tr>
+      
+    <% @project.discussions.each do |disc| %>
+    <tr>
+      <td><%= link_to disc.title, project_discussion_path(@project, disc) %></td>
+      <% if disc.user.present? %>
+        <td><%= disc.user.name_display %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <td>
+        <%= link_to "Edit", edit_project_discussion_path(@project, disc), class: "btn btn-primary" %> |
+        <%= link_to "Delete", project_discussion_path(@project, disc), method: :delete, data: {confirm: "Are you sure you want to delete the discussion?"}, class: "btn btn-danger" %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+
+  <h3>Add Discussion Topic</h3>
+
+  <%= render "form" %>
+    
+
+</div>

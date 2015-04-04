@@ -1,0 +1,19 @@
+<%= form_for [@project, @discussion] do |f| %>
+  <div class="container">
+    <%= f.label :title %>
+  </div>    
+  <div class="container">
+    <%= f.text_field :title %>
+  </div>    
+    <br>
+  <div class="container">
+    <%= f.label :description %>
+  </div>    
+  <div class="container">
+    <%= f.text_area :description %>
+  </div>    
+    <br>
+  <div class="container">
+    <%= f.submit "Add" %>
+  </div>    
+  <% end %>

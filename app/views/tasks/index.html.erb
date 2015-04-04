@@ -1,0 +1,26 @@
+<div class = "container">
+  <h1>All Tasks</h1>
+</div>
+<br>  
+<div class = "container">
+  <%= link_to "Add Task", new_task_path, class: "btn btn-primary" %>
+</div>  
+<br>
+<br>
+<br>
+<div class = "container">
+  <table class = "table">
+    <tr>
+      <th>Task</th>
+    </tr>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= link_to task.title, task_path(task) %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+    
+      
+  
+  
