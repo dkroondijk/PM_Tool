@@ -23,6 +23,8 @@ class ProjectsController < ApplicationController
 
   def show
     @task = Task.new
+    @users = User.all
+    @member = Member.new
   end
 
   def edit

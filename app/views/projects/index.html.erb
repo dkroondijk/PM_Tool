@@ -12,13 +12,13 @@
   <table class = "table">
     <tr>
       <th>Project</th>
+      <th>Owner</th>
     </tr>
     <% @projects.each do |project| %>
       <tr>
         <td><%= link_to project.title, project_path(project) %></td>
+        <td><%= project.user.name_display %></td>
       </tr>
     <% end %>
   </table>
 </div>
-        
-    

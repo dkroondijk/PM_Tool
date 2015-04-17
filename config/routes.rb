@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :projects do
     resources :tasks
     resources :discussions
+    resources :members, only: [:create, :destroy]
   end
 
   resources :discussions, only: [] do
