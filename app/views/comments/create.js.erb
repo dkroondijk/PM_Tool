@@ -1,0 +1,9 @@
+<% if @comment.errors.any? %>
+  $('.comment-form').html('<%= j render partial: "/comments/form" %>')
+<% else %>
+  $('.comments').append("<%= j render partial: "/comments/comment", locals: {comment: @comment} %>");
+  $('#comment_body').val('');
+
+  <% @comment = Comment.new %>
+  $('.comment-form').html('<%= j render partial: "/comments/form" %>')
+<% end %>

@@ -7,28 +7,39 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.new(comment_params)
     @comment.discussion = @discussion
 
-    if @comment.save
-      DiscussionMailer.notify_discussion_owner(@comment).deliver_later
-      redirect_to project_discussion_path(@discussion.project, @discussion)
-    else
-      render "/discussions/show"
+    respond_to do |format|
+      if @comment.save
+        DiscussionMailer.notify_discussion_owner(@comment).deliver_later
+        format.html { redirect_to project_discussion_path(@discussion.project, @discussion) }
+        format.js { render }
+      else
+        format.html { render "/discussions/show" }
+        format.js { render }
+      end
     end
   end
 
   def edit
+    @discussion = @comment.discussion
   end
 
   def update
-    if @comment.update(comment_params)
-      redirect_to project_discussion_path(@discussion.project, @discussion)
-    else
-      render :edit
+    respond_to do |format|
+      if @comment.update(comment_params)
+        format.html { redirect_to project_discussion_path(@discussion.project, @discussion) }
+        format.js { render }
+      else
+        render :edit
+      end
     end
   end
 
   def destroy
-    @comment.destroy
-    redirect_to project_discussion_path(@discussion.project, @discussion)
+    respond_to do |format|
+      @comment.destroy
+      format.html { redirect_to project_discussion_path(@discussion.project, @discussion) }
+      format.js { render }
+    end
   end
 
 

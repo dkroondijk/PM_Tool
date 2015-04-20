@@ -1,0 +1,7 @@
+<tr id="<%= dom_id(comment) %>">
+  <td><%= comment.body %></td>
+  <td>
+    <%= link_to "Edit", edit_discussion_comment_path(@discussion, comment), remote: true, data: {toggle: "modal", target: "#edit-comment-modal"} %> |
+    <%= link_to "Delete", discussion_comment_path(@discussion, comment), remote: true, method: :delete, data: {confirm: "Are you sure you want to delete this comment?"} %>
+  </td>
+</tr>
